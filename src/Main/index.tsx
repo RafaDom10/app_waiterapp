@@ -1,4 +1,6 @@
+import { Categories } from '../components/Categories'
 import { Header } from '../components/Header'
+import { Menu } from '../components/Menu'
 import {
   Container,
   CategoriesContainer,
@@ -7,14 +9,21 @@ import {
   FooterContainer
 } from './styles'
 
-export function Main (): JSX.Element {
+export function Main () {
   return (
     <>
       <Container>
         <Header />
-        <CategoriesContainer></CategoriesContainer>
-        <MenuContainer></MenuContainer>
+
+        <CategoriesContainer>
+          <Categories />
+        </CategoriesContainer>
+
+        <MenuContainer>
+          <Menu />
+        </MenuContainer>
       </Container>
+
       <Footer>
         <FooterContainer></FooterContainer>
       </Footer>
