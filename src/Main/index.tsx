@@ -11,10 +11,13 @@ import {
   Footer,
   FooterContainer
 } from './styles'
+import { Cart } from '../components/Cart'
+import { CartItem } from '../types/CartItem'
 
 export function Main () {
   const [isTableModalVisible, setIsTableModalVisible] = useState<boolean>(false)
   const [selectedTable, setSelectedTable] = useState<string>('')
+  const [cartItems, setCartItems] = useState<CartItem[]>([])
 
   const handleSaveTable = (table: string) => {
     setSelectedTable(table)
@@ -43,12 +46,15 @@ export function Main () {
 
       <Footer>
         <FooterContainer>
-          {
-            !selectedTable &&
+          {!selectedTable && (
             <Button onPress={() => setIsTableModalVisible(true)} >
               Novo Pedido
             </Button>
-          }
+          )}
+
+          {selectedTable && (
+              <Cart cartItems={cartItems} />
+          )}
         </FooterContainer>
       </Footer>
 
