@@ -9,7 +9,11 @@ import { Text } from '../Text'
 import { ProductModal } from '../ProductModal/index'
 import { Product } from '../../types/Product'
 
-export function Menu () {
+interface MenuProps {
+  onAddToCart: (product: Product) => void
+}
+
+export function Menu ({ onAddToCart }: MenuProps) {
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false)
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
 
@@ -24,6 +28,7 @@ export function Menu () {
         visible={isModalVisible}
         onClose={() => setIsModalVisible(false)}
         product={selectedProduct}
+        onAddToCart={onAddToCart}
       />
 
       <FlatList
@@ -36,7 +41,7 @@ export function Menu () {
           <ProductContainer onPress={() => handleOpenModal(product)}>
             <Image
               source={{
-                uri: `http://192.168.0.10:3001/uploads/${product.imagePath}`
+                uri: `http://192.168.0.119:3001/uploads/${product.imagePath}`
               }}
             />
             <ProductDetails>
@@ -45,7 +50,7 @@ export function Menu () {
               <Text size={14} weight='600'>{formatCurrency(product.price)}</Text>
             </ProductDetails>
 
-            <AddToCartButton>
+            <AddToCartButton onPress={() => onAddToCart(product)}>
               <PlusCircle />
             </AddToCartButton>
           </ProductContainer>

@@ -12,7 +12,7 @@ export const ProductContainer = styled.View`
 `
 
 export const Actions = styled.View`
-  flex-direction: rox;
+  flex-direction: row;
 `
 
 export const Image = styled.Image`
